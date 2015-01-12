@@ -17,20 +17,22 @@ It is your assignment, shall you decide to take it, to estimate the number of sw
 
 ###Example 1
 
-For example, given the permutation [3, 6, 1, 2, 7, 8, 5, 4] (range 1..2^3), can be sorted as follows:
+For example, given the permutation ``[3, 6, 1, 2, 7, 8, 5, 4] (range 1..2^3)``, can be sorted as follows:
 input: 3, 6, 1, 2, 7, 8, 5, 4
 
 debug output:
+```
 was = [3, 6, 1, 2, 7, 8, 5, 4], swap [0, 3] => [4, 7] :  now = [7, 8, 5, 4, 3, 6, 1, 2]
 was = [7, 8, 5, 4, 3, 6, 1, 2], swap [0, 1] => [6, 7] :  now = [1, 2, 5, 4, 3, 6, 7, 8]
 was = [1, 2, 5, 4, 3, 6, 7, 8], swap [2, 2] => [4, 4] :  now = [1, 2, 3, 4, 5, 6, 7, 8]
-
+```
 Result: 3
 
 ###Example 2
 input: 3, 4, 1 ,2
 
 debug output: 
+```
 was = [3, 4, 1, 2], swap [0, 1] => [2, 3] :  now = [1, 2, 3, 4]
-
+```
 output: 1
