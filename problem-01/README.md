@@ -3,6 +3,8 @@ Problem 01: Mini-Power Swapper
 
 (Inspiration: https://code.google.com/codejam/contest/7214486/dashboard#s=p1)
 
+You can fork the repo, commit there and send a pull request. We'll review the code (if you want) and merge the solution to a branch in "solutions/".
+
 ###Problem
 
 In a parallel universe, people only want sorted lists of elements from 1 to 2^k.
