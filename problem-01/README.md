@@ -38,4 +38,4 @@ debug output:
 was = [3, 4, 1, 2], swap [0, 1] => [2, 3] :  now = [1, 2, 3, 4]
 ```
 
-output: 1
+Result: 1
