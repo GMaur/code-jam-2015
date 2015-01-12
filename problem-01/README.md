@@ -3,6 +3,8 @@ Problem 01: Mini-Power Swapper
 
 (Inspiration: https://code.google.com/codejam/contest/7214486/dashboard#s=p1)
 
+(Blog post in here: http://alvarogarcia7.github.io/blog/2015/01/12/gmaur-code-jam/)
+
 You can fork the repo, commit there and send a pull request. We'll review the code (if you want) and merge the solution to a branch in "solutions/".
 
 ###Problem
