@@ -10,7 +10,7 @@ In a parallel universe, people only want sorted lists of elements from 1 to 2^k.
 Now, old software systems generate lists of elements who are within the same range (1 to 2^k).
 
 There is a machine who swaps numbers in this fashion: 
-  * A range of numbers to be swapped is valid if and only if it is a range of adjacent numbers of size 2^k, and its starting position (position of the first element in the range) is a multiple of 2^k (where positions are 0-indexed).
+  * A range of numbers to be swapped is valid if and only if it is a range of adjacent numbers of size 2^k
   * A valid swap operation of size-k is defined by swapping two distinct, valid ranges of numbers, each of size 2^k.
 
 It is your assignment, shall you decide to take it, to estimate the number of swaps necessary to sort the list (and therefore be able to sell it to the public)
