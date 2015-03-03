@@ -126,10 +126,10 @@ public class PowerSwapperShould {
 		return Arrays.asList(array);
 	}
 
-	private void swapPart (final Integer[] m, final Integer[] mm) {
+	private void swapPart (final Integer[] array, final Integer[] indexes) {
 		int j =0;
-		for (int i = m[0]; i <= m[m.length -1]; i++) {
-			mm[j] =i;
+		for (int i = array[0]; i <= array[array.length -1]; i++) {
+			indexes[j] =i;
 			j++;
 		}
 	}
