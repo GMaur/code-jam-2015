@@ -1,4 +1,4 @@
-package com.gmaur.scratchpad.hamcrestmatcher;
+package com.gmaur.codejam.problem01;
 
 import org.junit.Test;
 
@@ -134,54 +134,6 @@ public class PowerSwapperShould {
 		assertThat(getIsCorrect(Arrays.asList(1,1,1,4)), equalTo(new Boolean[]{true, false, false, true}));
 	}
 
-
-	private List<Integer[]> getMaxNotCorrectTogether(List<Integer> integers) {
-
-		List<Integer[]> wrongParts = new ArrayList<>();
-		int sizeNotCorrectMax = 0;
-
-		Boolean[] isCorrect = getIsCorrect(integers);
-		int endRange =0;
-		for(int i=0;i<isCorrect.length;i++){
-			if (isCorrect[i]) {
-				if(sizeNotCorrectMax > 0) {
-					wrongParts.add(new Integer[]{endRange - (sizeNotCorrectMax - 1), endRange, sizeNotCorrectMax});
-				}
-				sizeNotCorrectMax =0;
-			} else {
-				sizeNotCorrectMax++;
-					endRange = i;
-			}
-		}
-		return wrongParts;
-	}
-
-	private Integer sort(List<Integer> of) {
-		int size = (int) (Math.log(of.size())/ Math.log(2));
-		Boolean[] isCorrect = getIsCorrect(of);
-		int amountOfCorrect = getAmount(isCorrect);
-
-		List<Integer> output = new ArrayList<>();
-		int amountOfCorrect2 = getMaxCorrectWhenWhenSwapWith(of, size, output, isCorrect);
-		if(amountOfCorrect2 > amountOfCorrect){
-			System.out.println("SUCCESS SWAP");
-		}
-
-		return 1;
-	}
-
-	private int getMaxCorrectWhenWhenSwapWith(List<Integer> of, int size, List<Integer> output, Boolean[] isCorrect) {
-		for(int i = 0; i < size; i++){
-			output.add(of.get(size + i));
-		}
-		for(int i = 0; i < size; i++){
-			output.add(of.get(i));
-		}
-
-//		System.out.println(output);
-
-		return getAmount(getIsCorrect(output));
-	}
 
 	private int getAmount(Boolean[] isCorrect) {
 
