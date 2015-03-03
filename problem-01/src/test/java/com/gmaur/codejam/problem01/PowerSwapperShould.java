@@ -21,6 +21,14 @@ public class PowerSwapperShould {
 		assertThat(sort2(Arrays.asList(3,2,7,8,1,6,5,4)), is(4));
 	}
 
+	@Test
+	public void calculate_correcteness() {
+
+		assertThat(getIsCorrect(Arrays.asList(1,2,3,4)), equalTo(new Boolean[]{true, true, true, true}));
+		assertThat(getIsCorrect(Arrays.asList(1,1,3,4)), equalTo(new Boolean[]{true, false, true, true}));
+		assertThat(getIsCorrect(Arrays.asList(1,1,1,4)), equalTo(new Boolean[]{true, false, false, true}));
+	}
+
 	private Integer sort2(List<Integer> input) {
 		final LinkedList<Integer[]> swaps = new LinkedList<>();
 		getPartsWithLength(input, input.size()/2, swaps);
@@ -125,15 +133,6 @@ public class PowerSwapperShould {
 		}
 		return swapped;
 	}
-
-	@Test
-	public void calculate_correcteness() {
-
-		assertThat(getIsCorrect(Arrays.asList(1,2,3,4)), equalTo(new Boolean[]{true, true, true, true}));
-		assertThat(getIsCorrect(Arrays.asList(1,1,3,4)), equalTo(new Boolean[]{true, false, true, true}));
-		assertThat(getIsCorrect(Arrays.asList(1,1,1,4)), equalTo(new Boolean[]{true, false, false, true}));
-	}
-
 
 	private int getAmount(Boolean[] isCorrect) {
 
