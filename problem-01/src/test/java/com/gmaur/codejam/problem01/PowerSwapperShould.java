@@ -103,18 +103,10 @@ public class PowerSwapperShould {
 		Integer[] ll = new Integer[l[1] - l[0] + 1];
 		Integer[] mm = new Integer[ll.length];
 
-		int j =0;
-		for (int i = m[0]; i <= m[m.length -1]; i++) {
-			mm[j] =i;
-			j++;
-		}
-		j =0;
-		for (int i = l[0]; i <= l[l.length -1]; i++) {
-			ll[j] =i;
-			j++;
-		}
+		swapPart(m, mm);
+		swapPart(l, ll);
 
-			Integer[] array = input.toArray(new Integer[0]);
+		Integer[] array = input.toArray(new Integer[0]);
 		Integer[] tmp = new Integer[mm.length];
 
 		for (int i = 0; i < mm.length; i++) {
@@ -132,6 +124,14 @@ public class PowerSwapperShould {
 			System.out.println("swapped = " + swapped);
 		}
 		return swapped;
+	}
+
+	private void swapPart (final Integer[] m, final Integer[] mm) {
+		int j =0;
+		for (int i = m[0]; i <= m[m.length -1]; i++) {
+			mm[j] =i;
+			j++;
+		}
 	}
 
 	private int getAmount(Boolean[] isCorrect) {
