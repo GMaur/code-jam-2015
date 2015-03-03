@@ -66,7 +66,7 @@ public class PowerSwapperShould {
 			for (int j = 0; j < list.size(); j++) {
 				Integer[] currentJ = list.get(j);
 				if (currentI[0] - currentI[1] == currentJ[0] - currentJ[1] && i != j) {
-					int after = getAmount(getIsCorrect(swap(input, currentI, currentJ, false)));
+					int after = getAmount(getIsCorrect(swapWithDebug(input, currentI, currentJ)));
 					if (after > maxAfter) {
 						chosen = new Integer[]{i, j};
 						maxAfter = after;
@@ -83,7 +83,7 @@ public class PowerSwapperShould {
 		int newSize;
 		if(null != thisLevelSwap){
 			swaps.add(thisLevelSwap);
-			swapped = swap(input, list.get(thisLevelSwap[0]), list.get(thisLevelSwap[1]), true);
+			swapped = swapWithDebug(input, list.get(thisLevelSwap[0]), list.get(thisLevelSwap[1]));
 			newSize = size;
 		}else {
 			newSize = size / 2;
@@ -93,13 +93,17 @@ public class PowerSwapperShould {
 
 	}
 
-	private List<Integer> swap(List<Integer> input, Integer[] l, Integer[] m, boolean debugOutput) {
-		if(debugOutput) {
-			System.out.println("input = " + input);
-			System.out.println("l = " + Arrays.asList(l));
-			System.out.println("m = " + Arrays.asList(m));
-		}
+	private List<Integer> swapWithDebug (List<Integer> input, Integer[] l, Integer[] m) {
+		System.out.println("input = " + input);
+		System.out.println("l = " + Arrays.asList(l));
+		System.out.println("m = " + Arrays.asList(m));
 
+		final List<Integer> swapped = swap(input, l, m);
+		System.out.println("swapped = " + swapped);
+		return swapped;
+	}
+
+	private List<Integer> swap (final List<Integer> input, final Integer[] l, final Integer[] m) {
 		Integer[] ll = new Integer[l[1] - l[0] + 1];
 		Integer[] mm = new Integer[ll.length];
 
@@ -119,11 +123,7 @@ public class PowerSwapperShould {
 		for (int i = 0; i < tmp.length; i++) {
 			array[ll[i]] = tmp[i];
 		}
-		final List<Integer> swapped = Arrays.asList(array);
-		if(debugOutput) {
-			System.out.println("swapped = " + swapped);
-		}
-		return swapped;
+		return Arrays.asList(array);
 	}
 
 	private void swapPart (final Integer[] m, final Integer[] mm) {
