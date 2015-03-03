@@ -15,7 +15,7 @@ public class PowerSwapperShould {
 
 	@Test
 	public void sort_the_array_with_4() {
-		assertThat(sort2(Arrays.asList(Integer.valueOf(3), Integer.valueOf(4), Integer.valueOf(1), Integer.valueOf(2))), is(1));
+		assertThat(sort2(Arrays.asList(3, 4, 1, 2)), is(1));
 		assertThat(sort2(Arrays.asList(3, 6, 1, 2, 7, 8, 5, 4)), is(3));
 		assertThat(sort2(Arrays.asList(5,2,7,8,1,6,3,4)), is(2));
 		assertThat(sort2(Arrays.asList(3,2,7,8,1,6,5,4)), is(4));
