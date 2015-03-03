@@ -104,11 +104,10 @@ public class PowerSwapperShould {
 	}
 
 	private List<Integer> swap (final List<Integer> input, final Integer[] l, final Integer[] m) {
-		Integer[] ll = new Integer[l[1] - l[0] + 1];
-		Integer[] mm = new Integer[ll.length];
+		final int length = l[1] - l[0] + 1;
 
-		generateIndices(m, mm);
-		generateIndices(l, ll);
+		final Integer[] mm = generateIndices(m, length);
+		final Integer[] ll = generateIndices(l, length);
 
 		Integer[] array = input.toArray(new Integer[0]);
 		Integer[] tmp = new Integer[mm.length];
@@ -126,12 +125,14 @@ public class PowerSwapperShould {
 		return Arrays.asList(array);
 	}
 
-	private void generateIndices (final Integer[] array, final Integer[] indexes) {
+	private Integer[] generateIndices (final Integer[] array, final int length) {
+		Integer[] indexes = new Integer[length];
 		int j =0;
 		for (int i = array[0]; i <= array[array.length -1]; i++) {
 			indexes[j] =i;
 			j++;
 		}
+		return indexes;
 	}
 
 	private int getAmount(Boolean[] isCorrect) {
