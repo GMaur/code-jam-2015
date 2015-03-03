@@ -22,7 +22,7 @@ public class PowerSwapperShould {
 	}
 
 	@Test
-	public void calculate_correcteness() {
+	public void calculate_correctness() {
 
 		assertThat(getIsCorrect(Arrays.asList(1,2,3,4)), equalTo(new Boolean[]{true, true, true, true}));
 		assertThat(getIsCorrect(Arrays.asList(1,1,3,4)), equalTo(new Boolean[]{true, false, true, true}));
