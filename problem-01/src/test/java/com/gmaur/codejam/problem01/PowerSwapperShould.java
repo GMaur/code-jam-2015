@@ -107,8 +107,8 @@ public class PowerSwapperShould {
 		Integer[] ll = new Integer[l[1] - l[0] + 1];
 		Integer[] mm = new Integer[ll.length];
 
-		swapPart(m, mm);
-		swapPart(l, ll);
+		generateIndices(m, mm);
+		generateIndices(l, ll);
 
 		Integer[] array = input.toArray(new Integer[0]);
 		Integer[] tmp = new Integer[mm.length];
@@ -126,7 +126,7 @@ public class PowerSwapperShould {
 		return Arrays.asList(array);
 	}
 
-	private void swapPart (final Integer[] array, final Integer[] indexes) {
+	private void generateIndices (final Integer[] array, final Integer[] indexes) {
 		int j =0;
 		for (int i = array[0]; i <= array[array.length -1]; i++) {
 			indexes[j] =i;
