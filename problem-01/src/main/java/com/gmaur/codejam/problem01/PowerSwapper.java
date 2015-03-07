@@ -48,16 +48,12 @@ public class PowerSwapper {
 				}
 			}
 		}
-		Integer[] thisLevelSwap= null;
-		if(null != chosen){
-			thisLevelSwap = chosen;
-		}
 
-		 List<Integer> swapped = input;
+		List<Integer> swapped = input;
 		int newSize;
-		if(null != thisLevelSwap){
-			swaps.add(thisLevelSwap);
-			swapped = swapWithDebug(input, swapCandidates.get(thisLevelSwap[0]), swapCandidates.get(thisLevelSwap[1]));
+		if(null != chosen){
+			swaps.add(chosen);
+			swapped = swapWithDebug(input, swapCandidates.get(chosen[0]), swapCandidates.get(chosen[1]));
 			newSize = size;
 		}else {
 			newSize = size / 2;
