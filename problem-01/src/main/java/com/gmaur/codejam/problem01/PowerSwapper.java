@@ -16,18 +16,18 @@ public class PowerSwapper {
 		if (size == 0) {
 			return;
 		}
-		List<Integer[]> list = getSwapCandidates(input, size);
-		if(list.isEmpty()){
+		List<Integer[]> swapCandidates = getSwapCandidates(input, size);
+		if(swapCandidates.isEmpty()){
 			return;
 		}
 		int maxBefore = getAmount(getIsCorrect(input));
 		int maxAfter = maxBefore;
 
 		Integer[] chosen = null;
-		for (int i = 0; i < list.size(); i++) {
-			Integer[] currentI = list.get(i);
-			for (int j = 0; j < list.size(); j++) {
-				Integer[] currentJ = list.get(j);
+		for (int i = 0; i < swapCandidates.size(); i++) {
+			Integer[] currentI = swapCandidates.get(i);
+			for (int j = 0; j < swapCandidates.size(); j++) {
+				Integer[] currentJ = swapCandidates.get(j);
 				if (currentI[0] - currentI[1] == currentJ[0] - currentJ[1] && i != j) {
 					int after = getAmount(getIsCorrect(swapWithDebug(input, currentI, currentJ)));
 					if (after > maxAfter) {
@@ -46,7 +46,7 @@ public class PowerSwapper {
 		int newSize;
 		if(null != thisLevelSwap){
 			swaps.add(thisLevelSwap);
-			swapped = swapWithDebug(input, list.get(thisLevelSwap[0]), list.get(thisLevelSwap[1]));
+			swapped = swapWithDebug(input, swapCandidates.get(thisLevelSwap[0]), swapCandidates.get(thisLevelSwap[1]));
 			newSize = size;
 		}else {
 			newSize = size / 2;
