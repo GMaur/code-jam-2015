@@ -13,8 +13,12 @@ public class PowerSwapper {
 	}
 
 	Integer sort2 (List<Integer> input) {
-		getPartsWithLength(input, input.size()/2);
+		getPartsWithLength(input, half(input));
 		return swaps.size();
+	}
+
+	private int half (final List<Integer> input) {
+		return input.size()/2;
 	}
 
 	private void getPartsWithLength (List<Integer> input, int size) {
