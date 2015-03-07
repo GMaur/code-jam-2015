@@ -4,6 +4,8 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
+import static com.gmaur.codejam.problem01.PowerSwapper.SolutionComparator.is;
+
 public class PowerSwapper {
 
 	private final LinkedList<Integer[]> swaps;
@@ -39,7 +41,7 @@ public class PowerSwapper {
 				Integer[] currentJ = swapCandidates.get(j);
 				if (currentI[0] - currentI[1] == currentJ[0] - currentJ[1] && i != j) {
 					int after = getAmount(getIsCorrect(swapWithDebug(input, currentI, currentJ)));
-					if (after > maxAfter) {
+					if (is(after).worseThan(maxAfter)) {
 						chosen = new Integer[]{i, j};
 						maxAfter = after;
 					}
@@ -47,7 +49,7 @@ public class PowerSwapper {
 			}
 		}
 		Integer[] thisLevelSwap= null;
-		if(maxAfter > maxBefore && null != chosen) {
+		if(is(maxAfter).worseThan(maxBefore) && null != chosen) {
 			thisLevelSwap = chosen;
 		}
 
@@ -137,5 +139,22 @@ public class PowerSwapper {
 			i++;
 		}
 		return isCorrect;
+	}
+
+	static class SolutionComparator {
+		private final int current;
+
+		public SolutionComparator (final int current) {
+			this.current = current;
+		}
+
+		//TODO AGB name not very clear
+		public boolean worseThan (final int candidate) {
+			return current > candidate;
+		}
+
+		public static SolutionComparator is (final int after) {
+			return new SolutionComparator(after);
+		}
 	}
 }
