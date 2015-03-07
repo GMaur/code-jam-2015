@@ -58,7 +58,6 @@ public class PowerSwapper {
 		if(null != chosenSwap){
 			swaps.add(chosenSwap);
 			swapsObjects.add(chosenSwapObject);
-			swapped = swapWithDebug(input, swapCandidates.get(chosenSwap[0]), swapCandidates.get(chosenSwap[1]));
 			swapped = swapWithDebug(input, swapCandidates, chosenSwapObject);
 			newSize = size;
 		}else {
