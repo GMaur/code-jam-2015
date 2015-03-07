@@ -63,8 +63,8 @@ public class PowerSwapper {
 
 	}
 
-	private List<Integer> swapWithDebug (final List<Integer> input, final List<Integer[]> swapCandidates, final Swap chosenSwapObject) {
-		return swapWithDebug(input, swapCandidates.get(chosenSwapObject.begin), swapCandidates.get(chosenSwapObject.end));
+	private List<Integer> swapWithDebug (final List<Integer> input, final List<Integer[]> swapCandidates, final Swap swap) {
+		return swapWithDebug(input, swapCandidates.get(swap.begin), swapCandidates.get(swap.end));
 	}
 
 	private List<Integer[]> getSwapCandidates (final List<Integer> input, final int size) {
