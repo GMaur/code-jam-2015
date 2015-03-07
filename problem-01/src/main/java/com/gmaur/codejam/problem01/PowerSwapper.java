@@ -6,13 +6,18 @@ import java.util.List;
 
 public class PowerSwapper {
 
+	private final LinkedList<Integer[]> swaps;
+
+	public PowerSwapper () {
+		swaps = new LinkedList<>();
+	}
+
 	Integer sort2 (List<Integer> input) {
-		final LinkedList<Integer[]> swaps = new LinkedList<>();
-		getPartsWithLength(input, input.size()/2, swaps);
+		getPartsWithLength(input, input.size()/2);
 		return swaps.size();
 	}
 
-	private void getPartsWithLength(List<Integer> input, int size, LinkedList<Integer[]> swaps) {
+	private void getPartsWithLength (List<Integer> input, int size) {
 		if (size == 0) {
 			return;
 		}
@@ -52,7 +57,7 @@ public class PowerSwapper {
 			newSize = size / 2;
 		}
 
-		getPartsWithLength(swapped, newSize, swaps);
+		getPartsWithLength(swapped, newSize);
 
 	}
 
