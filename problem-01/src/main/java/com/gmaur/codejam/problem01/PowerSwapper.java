@@ -8,11 +8,9 @@ import static com.gmaur.codejam.problem01.PowerSwapper.SolutionComparator.is;
 
 public class PowerSwapper {
 
-	private final LinkedList<Integer[]> swaps;
 	private List<Swap> swapsObjects;
 
 	public PowerSwapper () {
-		swaps = new LinkedList<>();
 		swapsObjects = new LinkedList<>();
 	}
 
@@ -56,7 +54,6 @@ public class PowerSwapper {
 		List<Integer> swapped = input;
 		int newSize;
 		if(null != chosenSwap){
-			swaps.add(chosenSwap);
 			swapsObjects.add(chosenSwapObject);
 			swapped = swapWithDebug(input, swapCandidates, chosenSwapObject);
 			newSize = size;
