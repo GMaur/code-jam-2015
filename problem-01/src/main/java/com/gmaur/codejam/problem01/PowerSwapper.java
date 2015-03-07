@@ -8,15 +8,15 @@ import static com.gmaur.codejam.problem01.PowerSwapper.SolutionComparator.is;
 
 public class PowerSwapper {
 
-	private List<Swap> swapsObjects;
+	private List<Swap> swaps;
 
 	public PowerSwapper () {
-		swapsObjects = new LinkedList<>();
+		swaps = new LinkedList<>();
 	}
 
 	Integer sort2 (List<Integer> input) {
 		getPartsWithLength(input, half(input));
-		return swapsObjects.size();
+		return swaps.size();
 	}
 
 	private int half (final List<Integer> input) {
@@ -54,7 +54,7 @@ public class PowerSwapper {
 		List<Integer> swapped = input;
 		int newSize;
 		if(null != chosenSwap){
-			swapsObjects.add(chosenSwapObject);
+			swaps.add(chosenSwapObject);
 			swapped = swapWithDebug(input, swapCandidates, chosenSwapObject);
 			newSize = size;
 		}else {
