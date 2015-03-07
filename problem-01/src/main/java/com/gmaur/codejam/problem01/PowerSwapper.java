@@ -112,15 +112,7 @@ public class PowerSwapper {
 	}
 
 	private int getAmount(Boolean[] isCorrect) {
-
-		int correct = 0;
-		for (Boolean current : isCorrect) {
-			if(current) {
-				correct++;
-			}
-		}
-
-		return correct;
+		return (int) Arrays.asList(isCorrect).stream().filter(x->x).count();
 	}
 
 	Boolean[] getIsCorrect (List<Integer> of) {
