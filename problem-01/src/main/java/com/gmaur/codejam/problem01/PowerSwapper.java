@@ -31,8 +31,8 @@ public class PowerSwapper {
 		if(swapCandidates.isEmpty()){
 			return;
 		}
-		int maxBefore = getAmount(getIsCorrect(input));
-		int maxAfter = maxBefore;
+		int maxCorrectPositionsFromBefore = getAmount(getIsCorrect(input));
+		int maxCorrectPositionsAfterSwap = maxCorrectPositionsFromBefore;
 
 		Integer[] chosen = null;
 		for (int i = 0; i < swapCandidates.size(); i++) {
@@ -40,16 +40,16 @@ public class PowerSwapper {
 			for (int j = 0; j < swapCandidates.size(); j++) {
 				Integer[] currentJ = swapCandidates.get(j);
 				if (currentI[0] - currentI[1] == currentJ[0] - currentJ[1] && i != j) {
-					int after = getAmount(getIsCorrect(swapWithDebug(input, currentI, currentJ)));
-					if (is(after).worseThan(maxAfter)) {
+					int correctPositionsAfterThisSwap = getAmount(getIsCorrect(swapWithDebug(input, currentI, currentJ)));
+					if (is(maxCorrectPositionsAfterSwap).betterThan(correctPositionsAfterThisSwap)) {
 						chosen = new Integer[]{i, j};
-						maxAfter = after;
+						maxCorrectPositionsAfterSwap = correctPositionsAfterThisSwap;
 					}
 				}
 			}
 		}
 		Integer[] thisLevelSwap= null;
-		if(is(maxAfter).worseThan(maxBefore) && null != chosen) {
+		if(null != chosen){
 			thisLevelSwap = chosen;
 		}
 
@@ -148,9 +148,8 @@ public class PowerSwapper {
 			this.current = current;
 		}
 
-		//TODO AGB name not very clear
-		public boolean worseThan (final int candidate) {
-			return current > candidate;
+		public boolean betterThan (final int candidate) {
+			return candidate > current;
 		}
 
 		public static SolutionComparator is (final int after) {
