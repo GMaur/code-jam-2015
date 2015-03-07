@@ -9,9 +9,11 @@ import static com.gmaur.codejam.problem01.PowerSwapper.SolutionComparator.is;
 public class PowerSwapper {
 
 	private final LinkedList<Integer[]> swaps;
+	private List<Swap> swapsObjects;
 
 	public PowerSwapper () {
 		swaps = new LinkedList<>();
+		swapsObjects = new LinkedList<>();
 	}
 
 	Integer sort2 (List<Integer> input) {
@@ -35,6 +37,7 @@ public class PowerSwapper {
 		int maxCorrectPositionsAfterSwap = maxCorrectPositionsFromBefore;
 
 		Integer[] chosenSwap = null;
+		Swap chosenSwapObject = null;
 		for (int i = 0; i < swapCandidates.size(); i++) {
 			Integer[] currentI = swapCandidates.get(i);
 			for (int j = 0; j < swapCandidates.size(); j++) {
@@ -43,6 +46,7 @@ public class PowerSwapper {
 					int correctPositionsAfterThisSwap = getAmount(getIsCorrect(swapWithDebug(input, currentI, currentJ)));
 					if (is(maxCorrectPositionsAfterSwap).betterThan(correctPositionsAfterThisSwap)) {
 						chosenSwap = new Integer[]{i, j};
+						chosenSwapObject = new Swap(i, j);
 						maxCorrectPositionsAfterSwap = correctPositionsAfterThisSwap;
 					}
 				}
@@ -53,7 +57,9 @@ public class PowerSwapper {
 		int newSize;
 		if(null != chosenSwap){
 			swaps.add(chosenSwap);
+			swapsObjects.add(chosenSwapObject);
 			swapped = swapWithDebug(input, swapCandidates.get(chosenSwap[0]), swapCandidates.get(chosenSwap[1]));
+			swapped = swapWithDebug(input, swapCandidates, chosenSwapObject);
 			newSize = size;
 		}else {
 			newSize = size / 2;
@@ -61,6 +67,10 @@ public class PowerSwapper {
 
 		getPartsWithLength(swapped, newSize);
 
+	}
+
+	private List<Integer> swapWithDebug (final List<Integer> input, final List<Integer[]> swapCandidates, final Swap chosenSwapObject) {
+		return swapWithDebug(input, swapCandidates.get(chosenSwapObject.begin), swapCandidates.get(chosenSwapObject.end));
 	}
 
 	private List<Integer[]> getSwapCandidates (final List<Integer> input, final int size) {
@@ -150,6 +160,16 @@ public class PowerSwapper {
 
 		public static SolutionComparator is (final int after) {
 			return new SolutionComparator(after);
+		}
+	}
+
+	private class Swap {
+		private final int begin;
+		private final int end;
+
+		public Swap (final int begin, final int end) {
+			this.begin = begin;
+			this.end = end;
 		}
 	}
 }
