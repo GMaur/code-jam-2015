@@ -34,7 +34,7 @@ public class PowerSwapper {
 		int maxCorrectPositionsFromBefore = getAmount(getIsCorrect(input));
 		int maxCorrectPositionsAfterSwap = maxCorrectPositionsFromBefore;
 
-		Integer[] chosen = null;
+		Integer[] chosenSwap = null;
 		for (int i = 0; i < swapCandidates.size(); i++) {
 			Integer[] currentI = swapCandidates.get(i);
 			for (int j = 0; j < swapCandidates.size(); j++) {
@@ -42,7 +42,7 @@ public class PowerSwapper {
 				if (currentI[0] - currentI[1] == currentJ[0] - currentJ[1] && i != j) {
 					int correctPositionsAfterThisSwap = getAmount(getIsCorrect(swapWithDebug(input, currentI, currentJ)));
 					if (is(maxCorrectPositionsAfterSwap).betterThan(correctPositionsAfterThisSwap)) {
-						chosen = new Integer[]{i, j};
+						chosenSwap = new Integer[]{i, j};
 						maxCorrectPositionsAfterSwap = correctPositionsAfterThisSwap;
 					}
 				}
@@ -51,9 +51,9 @@ public class PowerSwapper {
 
 		List<Integer> swapped = input;
 		int newSize;
-		if(null != chosen){
-			swaps.add(chosen);
-			swapped = swapWithDebug(input, swapCandidates.get(chosen[0]), swapCandidates.get(chosen[1]));
+		if(null != chosenSwap){
+			swaps.add(chosenSwap);
+			swapped = swapWithDebug(input, swapCandidates.get(chosenSwap[0]), swapCandidates.get(chosenSwap[1]));
 			newSize = size;
 		}else {
 			newSize = size / 2;
