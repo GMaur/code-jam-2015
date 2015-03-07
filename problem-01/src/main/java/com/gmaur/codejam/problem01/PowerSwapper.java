@@ -1,6 +1,5 @@
 package com.gmaur.codejam.problem01;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
@@ -115,7 +114,6 @@ public class PowerSwapper {
 	private int getAmount(Boolean[] isCorrect) {
 
 		int correct = 0;
-//		System.out.println(Arrays.asList(isCorrect));
 		for (Boolean current : isCorrect) {
 			if(current) {
 				correct++;
@@ -126,13 +124,11 @@ public class PowerSwapper {
 	}
 
 	Boolean[] getIsCorrect (List<Integer> of) {
-		List<Integer> correctOrder = new ArrayList<>(of.size());
 		int i = 1;
 		Boolean[] isCorrect = new Boolean[of.size()];
 		for (Integer current : of) {
-			correctOrder.add(i);
 			isCorrect[i-1] = i ==current;
-					i++;
+			i++;
 		}
 		return isCorrect;
 	}
