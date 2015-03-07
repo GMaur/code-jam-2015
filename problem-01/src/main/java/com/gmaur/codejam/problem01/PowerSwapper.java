@@ -40,7 +40,14 @@ public class PowerSwapper {
 			for (int j = 0; j < swapCandidates.size(); j++) {
 				Integer[] currentJ = swapCandidates.get(j);
 				if (currentI[0] - currentI[1] == currentJ[0] - currentJ[1] && i != j) {
-					int correctPositionsAfterThisSwap = getAmount(getIsCorrect(swapWithDebug(input, currentI, currentJ)));
+
+					System.out.println("input = " + input);
+					System.out.println("l = " + Arrays.asList(currentI));
+					System.out.println("m = " + Arrays.asList(currentJ));
+
+					final List<Integer> swapped = swap(input, currentI, currentJ);
+					System.out.println("swapped = " + swapped);
+					int correctPositionsAfterThisSwap = getAmount(getIsCorrect(swapped));
 					if (is(maxCorrectPositionsAfterSwap).betterThan(correctPositionsAfterThisSwap)) {
 						chosenSwap = new Swap(i, j);
 						maxCorrectPositionsAfterSwap = correctPositionsAfterThisSwap;
@@ -64,7 +71,16 @@ public class PowerSwapper {
 	}
 
 	private List<Integer> swapWithDebug (final List<Integer> input, final List<Integer[]> swapCandidates, final Swap swap) {
-		return swapWithDebug(input, swapCandidates.get(swap.begin), swapCandidates.get(swap.end));
+		Integer[] l = swapCandidates.get(swap.begin);
+		Integer[] m = swapCandidates.get(swap.end);
+
+		System.out.println("input = " + input);
+		System.out.println("l = " + Arrays.asList(l));
+		System.out.println("m = " + Arrays.asList(m));
+
+		final List<Integer> swapped = swap(input, l, m);
+		System.out.println("swapped = " + swapped);
+		return swapped;
 	}
 
 	private List<Integer[]> getSwapCandidates (final List<Integer> input, final int size) {
@@ -84,16 +100,6 @@ public class PowerSwapper {
 			}
 		}
 		return list;
-	}
-
-	private List<Integer> swapWithDebug (List<Integer> input, Integer[] l, Integer[] m) {
-		System.out.println("input = " + input);
-		System.out.println("l = " + Arrays.asList(l));
-		System.out.println("m = " + Arrays.asList(m));
-
-		final List<Integer> swapped = swap(input, l, m);
-		System.out.println("swapped = " + swapped);
-		return swapped;
 	}
 
 	private List<Integer> swap (final List<Integer> input, final Integer[] l, final Integer[] m) {
