@@ -18,7 +18,7 @@ public class PowerSwapper {
 
 	Integer sort2 (List<Integer> input) {
 		getPartsWithLength(input, half(input));
-		return swaps.size();
+		return swapsObjects.size();
 	}
 
 	private int half (final List<Integer> input) {
