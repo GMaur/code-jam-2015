@@ -16,21 +16,7 @@ public class PowerSwapper {
 		if (size == 0) {
 			return;
 		}
-		List<Integer[]> list = new LinkedList<>();
-		{
-			int end, i;
-			for (i = 0; i < input.size(); i = end) {
-				end = i + (size - 1);
-
-				if (end < input.size() && size > 0) {
-					list.add(new Integer[]{
-							i,
-							end
-					});
-				}
-				end++;
-			}
-		}
+		List<Integer[]> list = getSwapCandidates(input, size);
 		if(list.isEmpty()){
 			return;
 		}
@@ -68,6 +54,25 @@ public class PowerSwapper {
 
 		getPartsWithLength(swapped, newSize, swaps);
 
+	}
+
+	private List<Integer[]> getSwapCandidates (final List<Integer> input, final int size) {
+		List<Integer[]> list = new LinkedList<>();
+		{
+			int end, i;
+			for (i = 0; i < input.size(); i = end) {
+				end = i + (size - 1);
+
+				if (end < input.size() && size > 0) {
+					list.add(new Integer[]{
+							i,
+							end
+					});
+				}
+				end++;
+			}
+		}
+		return list;
 	}
 
 	private List<Integer> swapWithDebug (List<Integer> input, Integer[] l, Integer[] m) {
