@@ -25,17 +25,17 @@ public class PowerSwapper {
 	}
 
 	private void getPartsWithLength (List<Integer> input, int size) {
-		List<Integer[]> swapCandidates = generateSwapCandidates(input, size);
+		List<Swap> swapCandidates = generateSwapCandidates(input, size);
 		if (swapCandidates.isEmpty()) return;
 		int maxCorrectPositionsFromBefore = getAmount(getIsCorrect(input));
 		int maxCorrectPositionsAfterSwap = maxCorrectPositionsFromBefore;
 
 		Swap chosenSwap = null;
 		for (int i = 0; i < swapCandidates.size(); i++) {
-			Integer[] currentI = swapCandidates.get(i);
+			Swap currentI = swapCandidates.get(i);
 			for (int j = 0; j < swapCandidates.size(); j++) {
-				Integer[] currentJ = swapCandidates.get(j);
-				if (currentI[0] - currentI[1] == currentJ[0] - currentJ[1] && i != j) {
+				Swap currentJ = swapCandidates.get(j);
+				if (currentI.begin - currentI.end == currentJ.begin - currentJ.end && i != j) {
 
 					System.out.println("input = " + input);
 					System.out.println("l = " + Arrays.asList(currentI));
@@ -66,9 +66,9 @@ public class PowerSwapper {
 
 	}
 
-	private List<Integer[]> generateSwapCandidates (final List<Integer> input, final int size) {
+	private List<Swap> generateSwapCandidates (final List<Integer> input, final int size) {
 
-		List<Integer[]> swapCandidates = new ArrayList<>();
+		List<Swap> swapCandidates = new ArrayList<>();
 		if(size == 0){
 			return swapCandidates;
 		}
@@ -79,39 +79,37 @@ public class PowerSwapper {
 		return swapCandidates;
 	}
 
-	private List<Integer> swapWithDebug (final List<Integer> input, final List<Integer[]> swapCandidates, final Swap swap) {
-		Integer[] l = swapCandidates.get(swap.begin);
-		Integer[] m = swapCandidates.get(swap.end);
+	private List<Integer> swapWithDebug (final List<Integer> input, final List<Swap> swapCandidates, final Swap swap) {
+//		Integer[] l = swapCandidates.get(swap.begin);
+//		Integer[] m = swapCandidates.get(swap.end);
 
-		System.out.println("input = " + input);
-		System.out.println("l = " + Arrays.asList(l));
-		System.out.println("m = " + Arrays.asList(m));
+//		System.out.println("input = " + input);
+//		System.out.println("l = " + Arrays.asList(l));
+//		System.out.println("m = " + Arrays.asList(m));
 
-		final List<Integer> swapped = swap(input, l, m);
+		final List<Integer> swapped = swap(input, swapCandidates.get(swap.begin), swapCandidates.get(swap.end));
 		System.out.println("swapped = " + swapped);
 		return swapped;
 	}
 
-	private List<Integer[]> getSwapCandidates (final List<Integer> input, final int size) {
-		List<Integer[]> list = new LinkedList<>();
+	private List<Swap> getSwapCandidates (final List<Integer> input, final int size) {
+		List<Swap> list = new LinkedList<>();
 		int end, i;
 		for (i = 0; i < input.size(); i = end) {
 			end = i + (size - 1);
 
 			if (end < input.size() && size > 0) {
-				list.add(new Integer[]{
-						i,
-						end
-				});
+				list.add(new Swap(i, end));
 			}
 			end++;
 		}
 		return list;
 	}
 
-	private List<Integer> swap (final List<Integer> input, final Integer[] l, final Integer[] m) {
-		final Integer[] mm = generateIndices(m);
-		final Integer[] ll = generateIndices(l);
+	private List<Integer> swap (final List<Integer> input, final Swap l, final Swap m) {
+
+		final Integer[] mm = generateIndices(swapToIntegerArray(m));
+		final Integer[] ll = generateIndices(swapToIntegerArray(l));
 
 		Integer[] array = input.toArray(new Integer[0]);
 		Integer[] tmp = new Integer[mm.length];
@@ -127,6 +125,10 @@ public class PowerSwapper {
 			array[ll[i]] = tmp[i];
 		}
 		return Arrays.asList(array);
+	}
+
+	private Integer[] swapToIntegerArray (final Swap m) {
+		return new Integer[]{m.begin, m.end};
 	}
 
 	private Integer[] generateIndices (final Integer[] array) {
