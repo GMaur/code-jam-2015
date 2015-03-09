@@ -1,5 +1,6 @@
 package com.gmaur.codejam.problem01;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
@@ -24,13 +25,8 @@ public class PowerSwapper {
 	}
 
 	private void getPartsWithLength (List<Integer> input, int size) {
-		if (size == 0) {
-			return;
-		}
-		List<Integer[]> swapCandidates = getSwapCandidates(input, size);
-		if(swapCandidates.isEmpty()){
-			return;
-		}
+		List<Integer[]> swapCandidates = generateSwapCandidates(input, size);
+		if (swapCandidates.isEmpty()) return;
 		int maxCorrectPositionsFromBefore = getAmount(getIsCorrect(input));
 		int maxCorrectPositionsAfterSwap = maxCorrectPositionsFromBefore;
 
@@ -68,6 +64,19 @@ public class PowerSwapper {
 
 		getPartsWithLength(swapped, newSize);
 
+	}
+
+	private List<Integer[]> generateSwapCandidates (final List<Integer> input, final int size) {
+
+		List<Integer[]> swapCandidates = new ArrayList<>();
+		if(size == 0){
+			return swapCandidates;
+		}
+		swapCandidates = getSwapCandidates(input, size);
+		if(swapCandidates.isEmpty()){
+			return swapCandidates;
+		}
+		return swapCandidates;
 	}
 
 	private List<Integer> swapWithDebug (final List<Integer> input, final List<Integer[]> swapCandidates, final Swap swap) {
