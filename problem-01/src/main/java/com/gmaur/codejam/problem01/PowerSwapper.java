@@ -15,7 +15,7 @@ public class PowerSwapper {
 		swaps = new LinkedList<>();
 	}
 
-	Integer sort2 (InputArray input) {
+	Integer sort (InputArray input) {
 		getPartsWithLength(input.get(), input.halfSize());
 		return swaps.size();
 	}

@@ -28,7 +28,7 @@ public class PowerSwapperShould {
 	}
 
 	private Integer sort2(List<Integer> input) {
-		return new PowerSwapper().sort2(new InputArray(input));
+		return new PowerSwapper().sort(new InputArray(input));
 	}
 
 	//TODO AGB this needs to be extracted to a collaborator 
