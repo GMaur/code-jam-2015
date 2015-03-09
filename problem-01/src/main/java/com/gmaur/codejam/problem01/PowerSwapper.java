@@ -94,19 +94,17 @@ public class PowerSwapper {
 
 	private List<Integer[]> getSwapCandidates (final List<Integer> input, final int size) {
 		List<Integer[]> list = new LinkedList<>();
-		{
-			int end, i;
-			for (i = 0; i < input.size(); i = end) {
-				end = i + (size - 1);
+		int end, i;
+		for (i = 0; i < input.size(); i = end) {
+			end = i + (size - 1);
 
-				if (end < input.size() && size > 0) {
-					list.add(new Integer[]{
-							i,
-							end
-					});
-				}
-				end++;
+			if (end < input.size() && size > 0) {
+				list.add(new Integer[]{
+						i,
+						end
+				});
 			}
+			end++;
 		}
 		return list;
 	}
