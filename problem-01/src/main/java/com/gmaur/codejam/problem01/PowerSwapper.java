@@ -70,7 +70,7 @@ public class PowerSwapper {
 		if(size == 0){
 			return swapCandidates;
 		}
-		swapCandidates = getSwapCandidates(input.get(), size);
+		swapCandidates = getSwapCandidates(input, size);
 		if(swapCandidates.isEmpty()){
 			return swapCandidates;
 		}
@@ -90,7 +90,8 @@ public class PowerSwapper {
 		return swapped;
 	}
 
-	private List<Swap> getSwapCandidates (final List<Integer> input, final int size) {
+	private List<Swap> getSwapCandidates (final InputArray inputArray, final int size) {
+		final List<Integer> input = inputArray.get();
 		List<Swap> list = new LinkedList<>();
 		int end, i;
 		for (i = 0; i < input.size(); i = end) {
