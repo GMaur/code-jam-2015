@@ -15,14 +15,12 @@ public class PowerSwapper {
 		swaps = new LinkedList<>();
 	}
 
-	Integer sort2 (List<Integer> input) {
-		getPartsWithLength(input, half(input));
+	Integer sort2 (InputArray input) {
+		getPartsWithLength(input.get(), input.halfSize());
 		return swaps.size();
 	}
 
-	private int half (final List<Integer> input) {
-		return input.size()/2;
-	}
+
 
 	private void getPartsWithLength (List<Integer> input, int size) {
 		List<Swap> swapCandidates = generateSwapCandidates(input, size);

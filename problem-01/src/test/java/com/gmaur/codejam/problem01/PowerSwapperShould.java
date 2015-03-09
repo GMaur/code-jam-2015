@@ -28,11 +28,12 @@ public class PowerSwapperShould {
 	}
 
 	private Integer sort2(List<Integer> input) {
-		return new PowerSwapper().sort2(input);
+		return new PowerSwapper().sort2(new InputArray(input));
 	}
 
 	//TODO AGB this needs to be extracted to a collaborator 
 	private Boolean[] getIsCorrect(List<Integer> of) {
 		return new PowerSwapper().getIsCorrect(of);
 	}
+
 }
