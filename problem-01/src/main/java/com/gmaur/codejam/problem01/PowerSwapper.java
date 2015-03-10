@@ -112,42 +112,10 @@ public class PowerSwapper {
 	}
 
 	private InputArray swap (final InputArray input, final Swap l, final Swap m) {
-
-		final List<Integer> inputList = input.get();
-
-		final Integer[] mm = generateIndices(swapToIntegerArray(m));
-		final Integer[] ll = generateIndices(swapToIntegerArray(l));
-
-		Integer[] array = inputList.toArray(new Integer[0]);
-		Integer[] tmp = new Integer[mm.length];
-
-		for (int i = 0; i < mm.length; i++) {
-			tmp[i] = array[mm[i]];
-		}
-
-		for (int i = 0; i < ll.length; i++) {
-			array[mm[i]] = array[ll[i]];
-		}
-		for (int i = 0; i < tmp.length; i++) {
-			array[ll[i]] = tmp[i];
-		}
-		return new InputArray(Arrays.asList(array));
+		return input.swap(l,m);
 	}
 
-	private Integer[] swapToIntegerArray (final Swap m) {
-		return new Integer[]{m.begin, m.end};
-	}
 
-	private Integer[] generateIndices (final Integer[] array) {
-		final int length = array[1] - array[0] + 1;
-		Integer[] indexes = new Integer[length];
-		int j =0;
-		for (int i = array[0]; i <= array[array.length -1]; i++) {
-			indexes[j] =i;
-			j++;
-		}
-		return indexes;
-	}
 
 	private int getAmount(Boolean[] isCorrect) {
 		return (int) Arrays.asList(isCorrect).stream().filter(x->x==true).count();
