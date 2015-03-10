@@ -27,10 +27,8 @@ public class PowerSwapper {
 		int maxCorrectPositionsAfterSwap = maxCorrectPositionsFromBefore;
 
 
-		List<SwapPair> validSwapCandidates = getValidSwapCandidates(swapCandidates);
-
 		SwapPair chosenSwapPair = null;
-		for(SwapPair nextSwap : validSwapCandidates) {
+		for(SwapPair nextSwap : getValidSwapCandidates(swapCandidates)) {
 			final InputArray swapped = swap(input, nextSwap);
 			int correctPositionsAfterThisSwap = getAmount(getIsCorrect(swapped));
 			if (is(maxCorrectPositionsAfterSwap).betterThan(correctPositionsAfterThisSwap)) {
