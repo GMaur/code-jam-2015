@@ -9,17 +9,15 @@ import static com.gmaur.codejam.problem01.SolutionComparator.is;
 
 public class PowerSwapper {
 
-	private List<Swap> swaps;
 	private List<SwapPair> swapPairs;
 
 	public PowerSwapper () {
-		swaps = new LinkedList<>();
 		swapPairs = new ArrayList<>();
 	}
 
 	Integer sort (InputArray input) {
 		getPartsWithLength(input, input.halfSize());
-		return swaps.size();
+		return swapPairs.size();
 	}
 
 	private void getPartsWithLength (InputArray input, int size) {
@@ -28,25 +26,16 @@ public class PowerSwapper {
 		int maxCorrectPositionsFromBefore = getAmount(getIsCorrect(input));
 		int maxCorrectPositionsAfterSwap = maxCorrectPositionsFromBefore;
 
-		Swap chosenSwap = null;
 		SwapPair chosenSwapPair = null;
 		for (int i = 0; i < swapCandidates.size(); i++) {
 			for (int j = 0; j < swapCandidates.size(); j++) {
+				SwapPair nextSwap = getNextSwapPair(swapCandidates, i, j);
 				if(i!=j) {
-					Swap currentI = swapCandidates.get(i);
-					Swap currentJ = swapCandidates.get(j);
-					if (sameLengthAs(currentI, currentJ)) {
-
-						System.out.println("input = " + input);
-						System.out.println("l = " + Arrays.asList(currentI));
-						System.out.println("m = " + Arrays.asList(currentJ));
-
-						final InputArray swapped = swap(input, new SwapPair(currentI, currentJ));
-						System.out.println("swapped = " + swapped);
+					if (sameLengthAs(nextSwap)) {
+						final InputArray swapped = swap(input, nextSwap);
 						int correctPositionsAfterThisSwap = getAmount(getIsCorrect(swapped));
 						if (is(maxCorrectPositionsAfterSwap).betterThan(correctPositionsAfterThisSwap)) {
-							chosenSwap = new Swap(i, j);
-							chosenSwapPair = new SwapPair(currentI, currentJ);
+							chosenSwapPair = nextSwap;
 							maxCorrectPositionsAfterSwap = correctPositionsAfterThisSwap;
 						}
 					}
@@ -56,11 +45,9 @@ public class PowerSwapper {
 
 		InputArray swapped = input;
 		int newSize;
-		if(null != chosenSwap && chosenSwapPair != null){
-			swaps.add(chosenSwap);
+		if(chosenSwapPair != null){
 			swapPairs.add(chosenSwapPair);
-			swapped = swapWithDebug(input, swapCandidates.get(chosenSwap.begin), swapCandidates.get(chosenSwap.end),
-					chosenSwapPair);
+			swapped = swapWithDebug(input, chosenSwapPair);
 			newSize = size;
 		}else {
 			newSize = size / 2;
@@ -70,8 +57,14 @@ public class PowerSwapper {
 
 	}
 
-	private boolean sameLengthAs (final Swap currentI, final Swap currentJ) {
-		return currentI.isSameLengthAs(currentJ);
+	private SwapPair getNextSwapPair (final List<Swap> swapCandidates, final int i, final int j) {
+		Swap currentI = swapCandidates.get(i);
+		Swap currentJ = swapCandidates.get(j);
+		return new SwapPair(currentI, currentJ);
+	}
+
+	private boolean sameLengthAs (final SwapPair nextSwap) {
+		return nextSwap.l.isSameLengthAs(nextSwap.m);
 	}
 
 	private List<Swap> generateSwapCandidates (final InputArray input, final int size) {
@@ -87,7 +80,7 @@ public class PowerSwapper {
 		return swapCandidates;
 	}
 
-	private InputArray swapWithDebug (final InputArray input, final Swap l, final Swap m, final SwapPair chosenSwapPair) {
+	private InputArray swapWithDebug (final InputArray input, final SwapPair chosenSwapPair) {
 //		Integer[] l = swapCandidates.get(swap.begin);
 //		Integer[] m = swapCandidates.get(swap.end);
 
