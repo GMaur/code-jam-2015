@@ -51,7 +51,7 @@ class InputArray {
 		final int length = l.end -l.begin + 1;
 		Integer[] indexes = new Integer[length];
 		int j =0;
-		for (int i = l.begin; i <= array[array.length -1]; i++) {
+		for (int i = l.begin; i <= l.end; i++) {
 			indexes[j] =i;
 			j++;
 		}
