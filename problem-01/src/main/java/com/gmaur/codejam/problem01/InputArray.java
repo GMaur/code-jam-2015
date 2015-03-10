@@ -24,8 +24,8 @@ class InputArray {
 
 	public InputArray swap (final Swap l, final Swap m) {
 
-		final Integer[] mm = generateIndices(swapToIntegerArray(m), m);
-		final Integer[] ll = generateIndices(swapToIntegerArray(l), l);
+		final Integer[] mm = generateIndices(m);
+		final Integer[] ll = generateIndices(l);
 
 		Integer[] array = input.toArray(new Integer[0]);
 		Integer[] tmp = new Integer[mm.length];
@@ -47,7 +47,7 @@ class InputArray {
 		return new Integer[]{m.begin, m.end};
 	}
 
-	private Integer[] generateIndices (final Integer[] array, final Swap l) {
+	private Integer[] generateIndices (final Swap l) {
 		final int length = l.end -l.begin + 1;
 		Integer[] indexes = new Integer[length];
 		int j =0;
