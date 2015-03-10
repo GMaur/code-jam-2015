@@ -43,10 +43,6 @@ class InputArray {
 		return new InputArray(Arrays.asList(array));
 	}
 
-	private Integer[] swapToIntegerArray (final Swap m) {
-		return new Integer[]{m.begin, m.end};
-	}
-
 	private Integer[] generateIndices (final Swap l) {
 		final int length = l.end -l.begin + 1;
 		Integer[] indexes = new Integer[length];
