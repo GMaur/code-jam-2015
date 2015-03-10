@@ -32,7 +32,6 @@ public class PowerSwapper {
 		if(chosenSwapPair.isPresent()){
 			swapPairs.add(chosenSwapPair.get());
 			final InputArray swapped = swap(input, chosenSwapPair.get());
-			System.out.println("swapped = " + swapped);
 			getPartsWithLength(swapped, size);
 		}else {
 			getPartsWithLength(input, size / 2);
