@@ -17,13 +17,12 @@ public class PowerSwapper {
 	}
 
 	Integer sort (InputArray input) {
-		getPartsWithLength(input, input.halfSize());
-		return swapPairs.size();
+		return getPartsWithLength(input, input.halfSize()).size();
 	}
 
-	private void getPartsWithLength (InputArray input, int size) {
+	private List<SwapPair> getPartsWithLength (InputArray input, int size) {
 		List<Swap> swapCandidates = generateSwapCandidates(input, size);
-		if (swapCandidates.isEmpty()) return;
+		if (swapCandidates.isEmpty()) return null;
 		int maxCorrectPositionsFromBefore = getAmount(getIsCorrect(input));
 		int maxCorrectPositionsAfterSwap = maxCorrectPositionsFromBefore;
 
@@ -50,6 +49,7 @@ public class PowerSwapper {
 
 		getPartsWithLength(swapped, newSize);
 
+		return swapPairs;
 	}
 
 	private List<SwapPair> getValidSwapCandidates (final List<Swap> swapCandidates) {
