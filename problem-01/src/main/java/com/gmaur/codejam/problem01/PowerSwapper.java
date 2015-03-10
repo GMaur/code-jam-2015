@@ -10,9 +10,11 @@ import static com.gmaur.codejam.problem01.SolutionComparator.is;
 public class PowerSwapper {
 
 	private List<Swap> swaps;
+	private List<SwapPair> swapPairs;
 
 	public PowerSwapper () {
 		swaps = new LinkedList<>();
+		swapPairs = new ArrayList<>();
 	}
 
 	Integer sort (InputArray input) {
@@ -27,6 +29,7 @@ public class PowerSwapper {
 		int maxCorrectPositionsAfterSwap = maxCorrectPositionsFromBefore;
 
 		Swap chosenSwap = null;
+		SwapPair chosenSwapPair = null;
 		for (int i = 0; i < swapCandidates.size(); i++) {
 			for (int j = 0; j < swapCandidates.size(); j++) {
 				if(i!=j) {
@@ -43,6 +46,7 @@ public class PowerSwapper {
 						int correctPositionsAfterThisSwap = getAmount(getIsCorrect(swapped));
 						if (is(maxCorrectPositionsAfterSwap).betterThan(correctPositionsAfterThisSwap)) {
 							chosenSwap = new Swap(i, j);
+							chosenSwapPair = new SwapPair(currentI, currentJ);
 							maxCorrectPositionsAfterSwap = correctPositionsAfterThisSwap;
 						}
 					}
@@ -54,6 +58,7 @@ public class PowerSwapper {
 		int newSize;
 		if(null != chosenSwap){
 			swaps.add(chosenSwap);
+			swapPairs.add(chosenSwapPair);
 			swapped = swapWithDebug(input, swapCandidates.get(chosenSwap.begin), swapCandidates.get(chosenSwap.end));
 			newSize = size;
 		}else {
