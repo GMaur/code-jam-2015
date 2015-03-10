@@ -30,14 +30,12 @@ public class PowerSwapper {
 		for (int i = 0; i < swapCandidates.size(); i++) {
 			for (int j = 0; j < swapCandidates.size(); j++) {
 				SwapPair nextSwap = getNextSwapPair(swapCandidates, i, j);
-				if(i!=j) {
-					if (sameLengthAs(nextSwap)) {
-						final InputArray swapped = swap(input, nextSwap);
-						int correctPositionsAfterThisSwap = getAmount(getIsCorrect(swapped));
-						if (is(maxCorrectPositionsAfterSwap).betterThan(correctPositionsAfterThisSwap)) {
-							chosenSwapPair = nextSwap;
-							maxCorrectPositionsAfterSwap = correctPositionsAfterThisSwap;
-						}
+				if (i != j && sameLengthAs(nextSwap)) {
+					final InputArray swapped = swap(input, nextSwap);
+					int correctPositionsAfterThisSwap = getAmount(getIsCorrect(swapped));
+					if (is(maxCorrectPositionsAfterSwap).betterThan(correctPositionsAfterThisSwap)) {
+						chosenSwapPair = nextSwap;
+						maxCorrectPositionsAfterSwap = correctPositionsAfterThisSwap;
 					}
 				}
 			}
