@@ -102,6 +102,4 @@ public class PowerSwapper {
 		return input.swap(chosenSwapPair);
 	}
 
-
-
 }
