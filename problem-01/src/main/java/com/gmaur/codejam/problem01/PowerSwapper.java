@@ -31,7 +31,9 @@ public class PowerSwapper {
 	private List<SwapPair> downOrContinue (final InputArray input, final int size, final Optional<SwapPair> chosenSwapPair) {
 		if(chosenSwapPair.isPresent()){
 			swapPairs.add(chosenSwapPair.get());
-			getPartsWithLength(swapWithDebug(input, chosenSwapPair.get()), size);
+			final InputArray swapped = swap(input, chosenSwapPair.get());
+			System.out.println("swapped = " + swapped);
+			getPartsWithLength(swapped, size);
 		}else {
 			getPartsWithLength(input, size / 2);
 		}
@@ -80,19 +82,6 @@ public class PowerSwapper {
 			return swapCandidates;
 		}
 		return swapCandidates;
-	}
-
-	private InputArray swapWithDebug (final InputArray input, final SwapPair chosenSwapPair) {
-//		Integer[] l = swapCandidates.get(swap.begin);
-//		Integer[] m = swapCandidates.get(swap.end);
-
-//		System.out.println("input = " + input);
-//		System.out.println("l = " + Arrays.asList(l));
-//		System.out.println("m = " + Arrays.asList(m));
-
-		final InputArray swapped = swap(input, chosenSwapPair);
-		System.out.println("swapped = " + swapped);
-		return swapped;
 	}
 
 	private List<Swap> getSwapCandidates (final InputArray inputArray, final int size) {
