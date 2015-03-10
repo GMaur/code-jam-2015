@@ -33,7 +33,8 @@ public class PowerSwapperShould {
 
 	//TODO AGB this needs to be extracted to a collaborator 
 	private Boolean[] getIsCorrect(List<Integer> of) {
-		return new PowerSwapper().getIsCorrect(new InputArray(of));
+		return new SolutionComparator(null).getIsCorrect(new InputArray
+				(of));
 	}
 
 }

@@ -1,7 +1,6 @@
 package com.gmaur.codejam.problem01;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
@@ -40,17 +39,11 @@ public class PowerSwapper {
 	}
 
 	private Optional<SwapPair> obtainASingleSwapThatImproves (final InputArray input, final List<Swap> swapCandidates) {
-		int maxCorrectPositionsFromBefore = getAmount(getIsCorrect(input));
-		int maxCorrectPositionsAfterSwap = maxCorrectPositionsFromBefore;
-
-
 		Optional<SwapPair> chosenSwapPair = Optional.empty();
 		for(SwapPair nextSwap : getValidSwapCandidates(swapCandidates)) {
 			final InputArray swapped = swap(input, nextSwap);
-			int correctPositionsAfterThisSwap = getAmount(getIsCorrect(swapped));
-			if (is(maxCorrectPositionsAfterSwap).betterThan(correctPositionsAfterThisSwap)) {
+			if (is(input).betterThan(swapped)) {
 				chosenSwapPair = Optional.of(nextSwap);
-				maxCorrectPositionsAfterSwap = correctPositionsAfterThisSwap;
 			}
 		}
 		return chosenSwapPair;
@@ -125,19 +118,6 @@ public class PowerSwapper {
 		return input.swap(chosenSwapPair);
 	}
 
-	private int getAmount(Boolean[] isCorrect) {
-		return (int) Arrays.asList(isCorrect).stream().filter(x->x==true).count();
-	}
 
-	Boolean[] getIsCorrect (InputArray of) {
-		final List<Integer> input = of.get();
-		int i = 1;
-		Boolean[] isCorrect = new Boolean[input.size()];
-		for (Integer current : input) {
-			isCorrect[i-1] = i ==current;
-			i++;
-		}
-		return isCorrect;
-	}
 
 }
