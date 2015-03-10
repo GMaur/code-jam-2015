@@ -24,12 +24,10 @@ class InputArray {
 
 	public InputArray swap (final Swap l, final Swap m) {
 
-		final List<Integer> inputList = input;
-
 		final Integer[] mm = generateIndices(swapToIntegerArray(m));
 		final Integer[] ll = generateIndices(swapToIntegerArray(l));
 
-		Integer[] array = inputList.toArray(new Integer[0]);
+		Integer[] array = input.toArray(new Integer[0]);
 		Integer[] tmp = new Integer[mm.length];
 
 		for (int i = 0; i < mm.length; i++) {
