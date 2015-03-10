@@ -26,18 +26,16 @@ public class PowerSwapper {
 		int maxCorrectPositionsFromBefore = getAmount(getIsCorrect(input));
 		int maxCorrectPositionsAfterSwap = maxCorrectPositionsFromBefore;
 
+
+		List<SwapPair> validSwapCandidates = getValidSwapCandidates(swapCandidates);
+
 		SwapPair chosenSwapPair = null;
-		for (int i = 0; i < swapCandidates.size(); i++) {
-			for (int j = 0; j < swapCandidates.size(); j++) {
-				SwapPair nextSwap = getNextSwapPair(swapCandidates, i, j);
-				if (i != j && sameLengthAs(nextSwap)) {
-					final InputArray swapped = swap(input, nextSwap);
-					int correctPositionsAfterThisSwap = getAmount(getIsCorrect(swapped));
-					if (is(maxCorrectPositionsAfterSwap).betterThan(correctPositionsAfterThisSwap)) {
-						chosenSwapPair = nextSwap;
-						maxCorrectPositionsAfterSwap = correctPositionsAfterThisSwap;
-					}
-				}
+		for(SwapPair nextSwap : validSwapCandidates) {
+			final InputArray swapped = swap(input, nextSwap);
+			int correctPositionsAfterThisSwap = getAmount(getIsCorrect(swapped));
+			if (is(maxCorrectPositionsAfterSwap).betterThan(correctPositionsAfterThisSwap)) {
+				chosenSwapPair = nextSwap;
+				maxCorrectPositionsAfterSwap = correctPositionsAfterThisSwap;
 			}
 		}
 
@@ -52,6 +50,21 @@ public class PowerSwapper {
 		}
 
 		getPartsWithLength(swapped, newSize);
+
+	}
+
+	private List<SwapPair> getValidSwapCandidates (final List<Swap> swapCandidates) {
+		final List<SwapPair>  result = new ArrayList<>();
+		SwapPair chosenSwapPair = null;
+		for (int i = 0; i < swapCandidates.size(); i++) {
+			for (int j = 0; j < swapCandidates.size(); j++) {
+				SwapPair nextSwap = getNextSwapPair(swapCandidates, i, j);
+				if (i != j && sameLengthAs(nextSwap)) {
+					result.add(nextSwap);
+				}
+			}
+		}
+		return result;
 
 	}
 
