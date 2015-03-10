@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Optional;
 
 import static com.gmaur.codejam.problem01.SolutionComparator.is;
 
@@ -27,21 +28,21 @@ public class PowerSwapper {
 		int maxCorrectPositionsAfterSwap = maxCorrectPositionsFromBefore;
 
 
-		SwapPair chosenSwapPair = null;
+		Optional<SwapPair> chosenSwapPair = Optional.empty();
 		for(SwapPair nextSwap : getValidSwapCandidates(swapCandidates)) {
 			final InputArray swapped = swap(input, nextSwap);
 			int correctPositionsAfterThisSwap = getAmount(getIsCorrect(swapped));
 			if (is(maxCorrectPositionsAfterSwap).betterThan(correctPositionsAfterThisSwap)) {
-				chosenSwapPair = nextSwap;
+				chosenSwapPair = Optional.of(nextSwap);
 				maxCorrectPositionsAfterSwap = correctPositionsAfterThisSwap;
 			}
 		}
 
 		InputArray swapped = input;
 		int newSize;
-		if(chosenSwapPair != null){
-			swapPairs.add(chosenSwapPair);
-			swapped = swapWithDebug(input, chosenSwapPair);
+		if(chosenSwapPair.isPresent()){
+			swapPairs.add(chosenSwapPair.get());
+			swapped = swapWithDebug(input, chosenSwapPair.get());
 			newSize = size;
 		}else {
 			newSize = size / 2;
