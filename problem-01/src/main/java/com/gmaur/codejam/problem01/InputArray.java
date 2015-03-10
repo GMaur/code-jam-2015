@@ -24,8 +24,8 @@ class InputArray {
 
 	public InputArray swap (final SwapPair chosenSwapPair) {
 
-		final Swap m = chosenSwapPair.m;
-		final Swap l = chosenSwapPair.l;
+		final Swap m = chosenSwapPair.future;
+		final Swap l = chosenSwapPair.past;
 		final Integer[] mm = generateIndices(m);
 		final Integer[] ll = generateIndices(l);
 

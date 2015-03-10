@@ -65,10 +65,10 @@ public class PowerSwapper {
 
 	}
 
-	private SwapPair getNextSwapPair (final List<Swap> swapCandidates, final int i, final int j) {
-		Swap l = swapCandidates.get(i);
-		Swap m = swapCandidates.get(j);
-		return new SwapPair(l, m);
+	private SwapPair getNextSwapPair (final List<Swap> swapCandidates, final int toBeReplaced, final int replaceFor) {
+		Swap past = swapCandidates.get(toBeReplaced);
+		Swap future = swapCandidates.get(replaceFor);
+		return new SwapPair(past, future);
 	}
 
 	private List<Swap> generateSwapCandidates (final InputArray input, final int size) {
