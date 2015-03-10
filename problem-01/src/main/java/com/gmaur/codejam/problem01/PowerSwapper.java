@@ -20,8 +20,6 @@ public class PowerSwapper {
 		return swaps.size();
 	}
 
-
-
 	private void getPartsWithLength (InputArray input, int size) {
 		List<Swap> swapCandidates = generateSwapCandidates(input, size);
 		if (swapCandidates.isEmpty()) return;
@@ -114,8 +112,6 @@ public class PowerSwapper {
 	private InputArray swap (final InputArray input, final Swap l, final Swap m) {
 		return input.swap(l,m);
 	}
-
-
 
 	private int getAmount(Boolean[] isCorrect) {
 		return (int) Arrays.asList(isCorrect).stream().filter(x->x==true).count();
