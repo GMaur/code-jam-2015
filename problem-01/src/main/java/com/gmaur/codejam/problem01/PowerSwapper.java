@@ -32,19 +32,21 @@ public class PowerSwapper {
 		for (int i = 0; i < swapCandidates.size(); i++) {
 			Swap currentI = swapCandidates.get(i);
 			for (int j = 0; j < swapCandidates.size(); j++) {
-				Swap currentJ = swapCandidates.get(j);
-				if (sameLengthAs(currentI, currentJ) && i != j) {
+				if(i!=j) {
+					Swap currentJ = swapCandidates.get(j);
+					if (sameLengthAs(currentI, currentJ)) {
 
-					System.out.println("input = " + input);
-					System.out.println("l = " + Arrays.asList(currentI));
-					System.out.println("m = " + Arrays.asList(currentJ));
+						System.out.println("input = " + input);
+						System.out.println("l = " + Arrays.asList(currentI));
+						System.out.println("m = " + Arrays.asList(currentJ));
 
-					final InputArray swapped = swap(input, currentI, currentJ);
-					System.out.println("swapped = " + swapped);
-					int correctPositionsAfterThisSwap = getAmount(getIsCorrect(swapped));
-					if (is(maxCorrectPositionsAfterSwap).betterThan(correctPositionsAfterThisSwap)) {
-						chosenSwap = new Swap(i, j);
-						maxCorrectPositionsAfterSwap = correctPositionsAfterThisSwap;
+						final InputArray swapped = swap(input, currentI, currentJ);
+						System.out.println("swapped = " + swapped);
+						int correctPositionsAfterThisSwap = getAmount(getIsCorrect(swapped));
+						if (is(maxCorrectPositionsAfterSwap).betterThan(correctPositionsAfterThisSwap)) {
+							chosenSwap = new Swap(i, j);
+							maxCorrectPositionsAfterSwap = correctPositionsAfterThisSwap;
+						}
 					}
 				}
 			}
