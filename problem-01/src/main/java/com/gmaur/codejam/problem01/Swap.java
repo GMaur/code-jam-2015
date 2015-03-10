@@ -11,4 +11,10 @@ class Swap {
 		this.begin = begin;
 		this.end = end;
 	}
+
+	public boolean isSameLengthAs (final Swap currentJ) {
+		final int myLength = begin - end;
+		final int otherLength = currentJ.begin - currentJ.end;
+		return myLength == otherLength;
+	}
 }

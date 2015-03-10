@@ -33,7 +33,7 @@ public class PowerSwapper {
 			Swap currentI = swapCandidates.get(i);
 			for (int j = 0; j < swapCandidates.size(); j++) {
 				Swap currentJ = swapCandidates.get(j);
-				if (currentI.begin - currentI.end == currentJ.begin - currentJ.end && i != j) {
+				if (sameLengthAs(currentI, currentJ) && i != j) {
 
 					System.out.println("input = " + input);
 					System.out.println("l = " + Arrays.asList(currentI));
@@ -62,6 +62,10 @@ public class PowerSwapper {
 
 		getPartsWithLength(swapped, newSize);
 
+	}
+
+	private boolean sameLengthAs (final Swap currentI, final Swap currentJ) {
+		return currentI.isSameLengthAs(currentJ);
 	}
 
 	private List<Swap> generateSwapCandidates (final InputArray input, final int size) {
