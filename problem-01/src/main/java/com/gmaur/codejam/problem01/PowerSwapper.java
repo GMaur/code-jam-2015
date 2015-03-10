@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
-import static com.gmaur.codejam.problem01.PowerSwapper.SolutionComparator.is;
+import static com.gmaur.codejam.problem01.SolutionComparator.is;
 
 public class PowerSwapper {
 
@@ -156,22 +156,6 @@ public class PowerSwapper {
 			i++;
 		}
 		return isCorrect;
-	}
-
-	static class SolutionComparator {
-		private final int current;
-
-		public SolutionComparator (final int current) {
-			this.current = current;
-		}
-
-		public boolean betterThan (final int candidate) {
-			return candidate > current;
-		}
-
-		public static SolutionComparator is (final int after) {
-			return new SolutionComparator(after);
-		}
 	}
 
 }
