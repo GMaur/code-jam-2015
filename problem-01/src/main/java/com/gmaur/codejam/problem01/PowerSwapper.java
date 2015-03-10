@@ -41,7 +41,7 @@ public class PowerSwapper {
 						System.out.println("l = " + Arrays.asList(currentI));
 						System.out.println("m = " + Arrays.asList(currentJ));
 
-						final InputArray swapped = swap(input, currentI, currentJ);
+						final InputArray swapped = swap(input, currentI, currentJ, new SwapPair(currentI, currentJ));
 						System.out.println("swapped = " + swapped);
 						int correctPositionsAfterThisSwap = getAmount(getIsCorrect(swapped));
 						if (is(maxCorrectPositionsAfterSwap).betterThan(correctPositionsAfterThisSwap)) {
@@ -56,10 +56,11 @@ public class PowerSwapper {
 
 		InputArray swapped = input;
 		int newSize;
-		if(null != chosenSwap){
+		if(null != chosenSwap && chosenSwapPair != null){
 			swaps.add(chosenSwap);
 			swapPairs.add(chosenSwapPair);
-			swapped = swapWithDebug(input, swapCandidates.get(chosenSwap.begin), swapCandidates.get(chosenSwap.end));
+			swapped = swapWithDebug(input, swapCandidates.get(chosenSwap.begin), swapCandidates.get(chosenSwap.end),
+					chosenSwapPair);
 			newSize = size;
 		}else {
 			newSize = size / 2;
@@ -86,7 +87,7 @@ public class PowerSwapper {
 		return swapCandidates;
 	}
 
-	private InputArray swapWithDebug (final InputArray input, final Swap l, final Swap m) {
+	private InputArray swapWithDebug (final InputArray input, final Swap l, final Swap m, final SwapPair chosenSwapPair) {
 //		Integer[] l = swapCandidates.get(swap.begin);
 //		Integer[] m = swapCandidates.get(swap.end);
 
@@ -94,7 +95,7 @@ public class PowerSwapper {
 //		System.out.println("l = " + Arrays.asList(l));
 //		System.out.println("m = " + Arrays.asList(m));
 
-		final InputArray swapped = swap(input, l, m);
+		final InputArray swapped = swap(input, l, m, chosenSwapPair);
 		System.out.println("swapped = " + swapped);
 		return swapped;
 	}
@@ -114,8 +115,8 @@ public class PowerSwapper {
 		return list;
 	}
 
-	private InputArray swap (final InputArray input, final Swap l, final Swap m) {
-		return input.swap(l,m);
+	private InputArray swap (final InputArray input, final Swap l, final Swap m, final SwapPair chosenSwapPair) {
+		return input.swap(l,m,chosenSwapPair);
 	}
 
 	private int getAmount(Boolean[] isCorrect) {

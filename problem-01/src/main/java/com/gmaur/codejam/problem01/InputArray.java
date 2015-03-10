@@ -22,8 +22,10 @@ class InputArray {
 		return Collections.unmodifiableList(input);
 	}
 
-	public InputArray swap (final Swap l, final Swap m) {
+	public InputArray swap (final Swap lbefore, final Swap mbefore, final SwapPair chosenSwapPair) {
 
+		final Swap m = chosenSwapPair.m;
+		final Swap l = chosenSwapPair.l;
 		final Integer[] mm = generateIndices(m);
 		final Integer[] ll = generateIndices(l);
 
