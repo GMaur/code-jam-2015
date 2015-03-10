@@ -17,4 +17,8 @@ class Swap {
 		final int otherLength = currentJ.begin - currentJ.end;
 		return myLength == otherLength;
 	}
+
+	public int length () {
+		return end - begin + 1;
+	}
 }

@@ -44,7 +44,7 @@ class InputArray {
 	}
 
 	private Integer[] generateIndices (final Swap l) {
-		final int length = l.end -l.begin + 1;
+		final int length = l.length();
 		Integer[] indexes = new Integer[length];
 		int j =0;
 		for (int i = l.begin; i <= l.end; i++) {
