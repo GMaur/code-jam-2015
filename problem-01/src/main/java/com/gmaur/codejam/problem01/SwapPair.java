@@ -11,4 +11,8 @@ public class SwapPair {
 		this.l = l;
 		this.m = m;
 	}
+
+	public boolean areSameLength () {
+		return l.isSameLengthAs(m);
+	}
 }
