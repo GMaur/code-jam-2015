@@ -37,17 +37,13 @@ public class PowerSwapper {
 			}
 		}
 
-		InputArray swapped = input;
-		int newSize;
 		if(chosenSwapPair.isPresent()){
 			swapPairs.add(chosenSwapPair.get());
-			swapped = swapWithDebug(input, chosenSwapPair.get());
-			newSize = size;
+			getPartsWithLength(swapWithDebug(input, chosenSwapPair.get()), size);
 		}else {
-			newSize = size / 2;
+			getPartsWithLength(input, size / 2);
 		}
 
-		getPartsWithLength(swapped, newSize);
 
 		return swapPairs;
 	}
