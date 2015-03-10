@@ -22,7 +22,7 @@ class InputArray {
 		return Collections.unmodifiableList(input);
 	}
 
-	public InputArray swap (final Swap lbefore, final Swap mbefore, final SwapPair chosenSwapPair) {
+	public InputArray swap (final SwapPair chosenSwapPair) {
 
 		final Swap m = chosenSwapPair.m;
 		final Swap l = chosenSwapPair.l;
