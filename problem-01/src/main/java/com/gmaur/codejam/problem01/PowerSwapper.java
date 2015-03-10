@@ -54,7 +54,7 @@ public class PowerSwapper {
 		int newSize;
 		if(null != chosenSwap){
 			swaps.add(chosenSwap);
-			swapped = swapWithDebug(input, swapCandidates, chosenSwap);
+			swapped = swapWithDebug(input, swapCandidates.get(chosenSwap.begin), swapCandidates.get(chosenSwap.end));
 			newSize = size;
 		}else {
 			newSize = size / 2;
@@ -81,7 +81,7 @@ public class PowerSwapper {
 		return swapCandidates;
 	}
 
-	private InputArray swapWithDebug (final InputArray input, final List<Swap> swapCandidates, final Swap swap) {
+	private InputArray swapWithDebug (final InputArray input, final Swap l, final Swap m) {
 //		Integer[] l = swapCandidates.get(swap.begin);
 //		Integer[] m = swapCandidates.get(swap.end);
 
@@ -89,7 +89,7 @@ public class PowerSwapper {
 //		System.out.println("l = " + Arrays.asList(l));
 //		System.out.println("m = " + Arrays.asList(m));
 
-		final InputArray swapped = swap(input, swapCandidates.get(swap.begin), swapCandidates.get(swap.end));
+		final InputArray swapped = swap(input, l, m);
 		System.out.println("swapped = " + swapped);
 		return swapped;
 	}
