@@ -174,13 +174,4 @@ public class PowerSwapper {
 		}
 	}
 
-	private class Swap {
-		private final int begin;
-		private final int end;
-
-		public Swap (final int begin, final int end) {
-			this.begin = begin;
-			this.end = end;
-		}
-	}
 }
