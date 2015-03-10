@@ -30,9 +30,9 @@ public class PowerSwapper {
 
 		Swap chosenSwap = null;
 		for (int i = 0; i < swapCandidates.size(); i++) {
-			Swap currentI = swapCandidates.get(i);
 			for (int j = 0; j < swapCandidates.size(); j++) {
 				if(i!=j) {
+					Swap currentI = swapCandidates.get(i);
 					Swap currentJ = swapCandidates.get(j);
 					if (sameLengthAs(currentI, currentJ)) {
 
