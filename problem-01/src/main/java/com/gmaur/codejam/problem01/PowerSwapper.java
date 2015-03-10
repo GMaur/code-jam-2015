@@ -53,7 +53,6 @@ public class PowerSwapper {
 
 	private List<SwapPair> getValidSwapCandidates (final List<Swap> swapCandidates) {
 		final List<SwapPair>  result = new ArrayList<>();
-		SwapPair chosenSwapPair = null;
 		for (int i = 0; i < swapCandidates.size(); i++) {
 			for (int j = 0; j < swapCandidates.size(); j++) {
 				SwapPair nextSwap = getNextSwapPair(swapCandidates, i, j);
